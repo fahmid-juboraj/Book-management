@@ -1,0 +1,15 @@
+<!-- templates/bookmgmt/edit_book.html -->
+<h1>Edit Book</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<!-- templates/bookmgmt/delete_book.html -->
+<!-- <h1>Delete Book</h1>
+<p>Are you sure you want to delete "{{ book.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form> -->

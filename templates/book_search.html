@@ -1,0 +1,42 @@
+<!-- templates/bookmgmt/book_search.html -->
+<h1>Search Books</h1>
+<form method="get">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{ request.GET.name|default:'' }}">
+    <label for="age">Age:</label>
+    <select name="age">
+        <option value="">All</option>
+        <option value="18" {% if request.GET.age == '18' %}selected{% endif %}>18</option>
+        <option value="19" {% if request.GET.age == '19' %}selected{% endif %}>19</option>
+        <option value="20" {% if request.GET.age == '20' %}selected{% endif %}>20</option>
+    </select>
+    <label for="types">Types:</label>
+    <input type="checkbox" name="sci_fi" {% if request.GET.sci_fi %}checked{% endif %}>Sci-Fi
+    <input type="checkbox" name="drama" {% if request.GET.drama %}checked{% endif %}>Drama
+    <input type="checkbox" name="novel" {% if request.GET.novel %}checked{% endif %}>Novel
+    <button type="submit">Search</button>
+</form>
+{% if books %}
+<table>
+    <thead>
+        <tr>
+            <th>Serial No.</th>
+            <th>Book Name</th>
+            <th>Publisher Name</th>
+            <th>Published Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.publisher_name }}</td>
+            <td>{{ book.publish_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No books found.</p>
+{% endif %}
